@@ -9,5 +9,9 @@ namespace PruebaTecnica_WebMaster.Areas.Identity.Data
     // Add profile data for application users by adding properties to the PruebaTecnica_WebMasterUser class
     public class PruebaTecnica_WebMasterUser : IdentityUser
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int UsernameChangeLimit { get; set; } = 10;
+        public byte[] ProfilePicture { get; set; }
     }
 }

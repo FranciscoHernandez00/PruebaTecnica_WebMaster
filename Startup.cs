@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PruebaTecnica_WebMaster.Areas.Identity.Data;
+using PruebaTecnica_WebMaster.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +27,16 @@ namespace PruebaTecnica_WebMaster
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<PruebaTecnica_WebMasterDbContext>(options =>
+                   options.UseSqlServer(Configuration.GetConnectionString("PruebaTecnica_WebMasterDbContextConnection")));
+
+            services.AddDefaultIdentity<PruebaTecnica_WebMasterUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+            }).AddRoles<IdentityRole>().AddEntityFrameworkStores<PruebaTecnica_WebMasterDbContext>();
+
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +57,7 @@ namespace PruebaTecnica_WebMaster
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -51,6 +65,7 @@ namespace PruebaTecnica_WebMaster
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

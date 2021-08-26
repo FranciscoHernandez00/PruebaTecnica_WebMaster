@@ -16,12 +16,6 @@ namespace PruebaTecnica_WebMaster.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<PruebaTecnica_WebMasterDbContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("PruebaTecnica_WebMasterDbContextConnection")));
-
-                services.AddDefaultIdentity<PruebaTecnica_WebMasterUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<PruebaTecnica_WebMasterDbContext>();
             });
         }
     }
