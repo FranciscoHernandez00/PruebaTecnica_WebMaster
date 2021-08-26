@@ -95,6 +95,8 @@ namespace PruebaTecnica_WebMaster.Areas.Identity.Pages.Account
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     
+                    return RedirectToAction("Index", "UserRoles");
+                    
                 }
                 foreach (var error in result.Errors)
                 {
