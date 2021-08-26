@@ -30,10 +30,10 @@ namespace PruebaTecnica_WebMaster
             services.AddDbContext<PruebaTecnica_WebMasterDbContext>(options =>
                    options.UseSqlServer(Configuration.GetConnectionString("PruebaTecnica_WebMasterDbContextConnection")));
 
-            services.AddDefaultIdentity<PruebaTecnica_WebMasterUser>(options =>
+            services.AddIdentity<PruebaTecnica_WebMasterUser, IdentityRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
-            }).AddRoles<IdentityRole>().AddEntityFrameworkStores<PruebaTecnica_WebMasterDbContext>();
+            }).AddEntityFrameworkStores<PruebaTecnica_WebMasterDbContext>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
