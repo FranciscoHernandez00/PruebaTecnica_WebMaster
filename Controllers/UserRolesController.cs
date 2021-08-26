@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PruebaTecnica_WebMaster.Areas.Identity.Data;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace PruebaTecnica_WebMaster.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class UserRolesController : Controller
     {
         private readonly UserManager<PruebaTecnica_WebMasterUser> _userManager;
