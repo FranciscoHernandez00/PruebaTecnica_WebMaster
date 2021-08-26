@@ -26,6 +26,24 @@ namespace PruebaTecnica_WebMaster.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Stores",
+                schema: "Identity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Direccion = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Telefono = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    Longitud = table.Column<decimal>(type: "decimal(9,6)", precision: 9, scale: 6, nullable: false),
+                    Altitud = table.Column<decimal>(type: "decimal(9,6)", precision: 9, scale: 6, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stores", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "User",
                 schema: "Identity",
                 columns: table => new
@@ -106,8 +124,8 @@ namespace PruebaTecnica_WebMaster.Migrations
                 schema: "Identity",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -156,8 +174,8 @@ namespace PruebaTecnica_WebMaster.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -223,6 +241,10 @@ namespace PruebaTecnica_WebMaster.Migrations
         {
             migrationBuilder.DropTable(
                 name: "RoleClaims",
+                schema: "Identity");
+
+            migrationBuilder.DropTable(
+                name: "Stores",
                 schema: "Identity");
 
             migrationBuilder.DropTable(
