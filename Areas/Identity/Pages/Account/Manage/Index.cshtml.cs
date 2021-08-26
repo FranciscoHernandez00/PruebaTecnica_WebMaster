@@ -49,11 +49,16 @@ namespace PruebaTecnica_WebMaster.Areas.Identity.Pages.Account.Manage
             public string PhoneNumber { get; set; }
             [Display(Name = "Profile Picture")]
             public byte[] ProfilePicture { get; set; }
+
+            [EmailAddress]
+            [Display(Name = "Email")]
+            public string Email { get; set; }
         }
 
         private async Task LoadAsync(PruebaTecnica_WebMasterUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
+            var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             var firstName = user.FirstName;
             var lastName = user.LastName;
@@ -63,6 +68,7 @@ namespace PruebaTecnica_WebMaster.Areas.Identity.Pages.Account.Manage
             {
                 PhoneNumber = phoneNumber,
                 Username = userName,
+                Email = email,
                 FirstName = firstName,
                 LastName = lastName,
                 ProfilePicture = profilePicture
