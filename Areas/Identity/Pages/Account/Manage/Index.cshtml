@@ -4,7 +4,6 @@
     ViewData["Title"] = "Profile";
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
-
 <h4>@ViewData["Title"]</h4>
 <partial name="_StatusMessage" model="Model.StatusMessage" />
 <partial name="_StatusMessage" model="Model.UserNameChangeLimitMessage" />
@@ -61,4 +60,5 @@
 </form>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
 }
