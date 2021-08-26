@@ -33,7 +33,7 @@ namespace PruebaTecnica_WebMaster
             services.AddIdentity<PruebaTecnica_WebMasterUser, IdentityRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
-            }).AddEntityFrameworkStores<PruebaTecnica_WebMasterDbContext>();
+            }).AddEntityFrameworkStores<PruebaTecnica_WebMasterDbContext>().AddDefaultTokenProviders().AddDefaultUI();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
