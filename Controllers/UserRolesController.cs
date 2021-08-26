@@ -94,6 +94,29 @@ namespace PruebaTecnica_WebMaster.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(string UserId)
+        {
+            PruebaTecnica_WebMasterUser user = await _userManager.FindByIdAsync(UserId);
+            if(user != null)
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "User Not Found");
+            }
+            return View();
+        }
+
         private async Task<List<string>> GetUserRoles(PruebaTecnica_WebMasterUser user)
         {
             return new List<string>(await _userManager.GetRolesAsync(user));
