@@ -66,7 +66,7 @@ namespace PruebaTecnica_WebMaster
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Stores}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

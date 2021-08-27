@@ -1,6 +1,11 @@
 ﻿@model StoreViewModel
 @using PruebaTecnica_WebMaster.Models.ImplementRepositoryPattern
 
+@{
+    ViewData["Title"] = "Update Store";
+}
+
+
 <h1> Edit Store </h1>
 
 <form asp-action="EditStore" autocomplete="off">
@@ -8,13 +13,13 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" required/>
+                <input asp-for="Name" class="form-control" required />
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" required/>
+                <input asp-for="Phone" class="form-control" required />
             </div>
         </div>
     </div>
@@ -28,13 +33,13 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="Longitude" class="control-label"></label>
-                <input asp-for="Longitude" class="form-control" type="number" id="longitude"  required readonly/>
+                <input asp-for="Longitude" class="form-control" type="number" id="longitude" required readonly />
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="Latitude" class="control-label"></label>
-                <input asp-for="Latitude" class="form-control" type="number" id="latitude" required readonly/>
+                <input asp-for="Latitude" class="form-control" type="number" id="latitude" required readonly />
             </div>
         </div>
     </div>

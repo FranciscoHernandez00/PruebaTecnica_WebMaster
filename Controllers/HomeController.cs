@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PruebaTecnica_WebMaster.Models;
+using PruebaTecnica_WebMaster.Models.ImplementRepositoryPattern;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,15 +14,16 @@ namespace PruebaTecnica_WebMaster.Controllers
     [Authorize(Roles = "Administrador, Normal")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IStoreRepository storeRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IStoreRepository storeRepository)
         {
-            _logger = logger;
+            this.storeRepository = storeRepository;
         }
 
         public IActionResult Index()
         {
+           
             return View();
         }
 

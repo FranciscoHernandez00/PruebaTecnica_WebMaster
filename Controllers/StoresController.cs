@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PruebaTecnica_WebMaster.Data;
 using PruebaTecnica_WebMaster.Models;
@@ -10,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace PruebaTecnica_WebMaster.Controllers
 {
+    [Authorize(Roles = "Administrador, Normal")]
     public class StoresController : Controller
     {
+
 
         private IStoreRepository storeRepository;
 
