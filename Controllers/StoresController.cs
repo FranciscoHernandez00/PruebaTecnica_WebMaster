@@ -37,11 +37,12 @@ namespace PruebaTecnica_WebMaster.Controllers
                 Coordinates = $"{s.Longitude}, {s.Latitude}",
 
             });
+            ViewBag.AllStores = storeRepository.GetAllStores().ToList();
             return View("Index", model);
         }
 
         [HttpGet]
-        public IActionResult AddEditStore(long? id)
+        public IActionResult EditStore(long? id)
         {
             StoreViewModel model = new StoreViewModel();
             if (id.HasValue)
@@ -56,17 +57,18 @@ namespace PruebaTecnica_WebMaster.Controllers
                     model.Longitude = store.Longitude;
                     model.Latitude = store.Latitude;
                 }
-
+                
             }
             return View(model);
         }
         [HttpPost]
-        public ActionResult AddEditStore(long? id, StoreViewModel model)
+        public ActionResult EditStore(long? id, StoreViewModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    
                     bool isNew = !id.HasValue;
                     Store store = isNew ? new Store
                     {
@@ -94,6 +96,30 @@ namespace PruebaTecnica_WebMaster.Controllers
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
+        }
+
+        public IActionResult CreateStore(long? id, StoreViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isNew = !id.HasValue;
+                Store store = isNew ? new Store
+                {
+                    AddedDate = DateTime.UtcNow
+                } : storeRepository.GetStore(id.Value);
+                store.Name = model.Name;
+                store.Address = model.Address;
+                store.Phone = model.Phone;
+                store.Longitude = model.Longitude;
+                store.Latitude = model.Latitude;
+                store.IPAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+                store.ModifiedDate = DateTime.UtcNow;
+                storeRepository.SaveStore(store);
+            return RedirectToAction("Index");
+
+            }
+
+            return View();
         }
 
         [HttpPost]

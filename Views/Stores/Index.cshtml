@@ -1,12 +1,21 @@
 ﻿@model IEnumerable<StoreViewModel>
 @using PruebaTecnica_WebMaster.Models.ImplementRepositoryPattern
 
-<div class="top-buffer"></div>
+<ul>
+    @foreach(var store in ViewBag.AllStores)
+    {
+        <li> @store.Longitude </li>
+        <li> @store.Latitude </li>
+    }
+</ul>
+
 <div class="panel panel-primary">
-    <div class="panel-heading panel-head">Stores</div>
+    <div class="panel-heading panel-head">
+        <h1> Stores </h1>
+    </div>
     <div class="panel-body">
         <div class="btn-group">
-            <a onclick="showInPopUp('@Url.Action("AddEditStore", "Stores", null, Context.Request.Scheme)', 'New Store')" class="btn btn-primary" style="color:#fff">
+            <a asp-action="CreateStore" class="btn btn-primary">
                 <i class='bx bxs-store-alt'></i>
                 Add Store
             </a>
@@ -18,6 +27,7 @@
                     <th>Name</th>
                     <th>Adress</th>
                     <th>Phone</th>
+                    <th>Coordinates</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -28,8 +38,9 @@
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
                         <td>@Html.DisplayFor(modelItem => item.Address)</td>
                         <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Coordinates)</td>
                         <td>
-                            <a onclick="showInPopUp('@Url.Action("AddEditStore", "Stores", new { id = item.Id}, Context.Request.Scheme)', 'Update Store')" class="btn btn-info" style="color:#fff">
+                            <a asp-action="EditStore" asp-route-id="@item.Id" class="btn btn-info">
                                 <i class='bx bx-pencil'></i>
                                 Edit Store
                             </a>
@@ -48,7 +59,6 @@
 </div>
 <br>
 <div id="map"></div>
-
 @section Scripts
 {
     <script src="~/js/store-index.js" asp-append-version="true"></script>

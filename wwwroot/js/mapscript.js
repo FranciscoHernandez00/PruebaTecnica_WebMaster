@@ -18,4 +18,23 @@ function initMap() {
         map: map,
     });
 
+    map.addListener('click', () => {
+        var hola = map.getCenter();
+    })
+
+    google.maps.event.addListener(map, 'click', function (event) {
+        displayCoordinates(event.latLng);
+        
+    });
+
+    function displayCoordinates(pnt) {
+
+        var lat = pnt.lat();
+        lat = lat.toFixed(6);
+        var lng = pnt.lng();
+        lng = lng.toFixed(6);
+        document.getElementById("latitude").value = lat;
+        document.getElementById("longitude").value = lng;
+    }
 }
+
