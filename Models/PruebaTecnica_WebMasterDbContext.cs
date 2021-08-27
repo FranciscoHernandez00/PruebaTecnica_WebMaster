@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PruebaTecnica_WebMaster.Areas.Identity.Data;
 using PruebaTecnica_WebMaster.Models;
+using PruebaTecnica_WebMaster.Models.ImplementRepositoryPattern;
 
 namespace PruebaTecnica_WebMaster.Data
 {
@@ -19,8 +20,8 @@ namespace PruebaTecnica_WebMaster.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Store>().Property(x => x.Altitud).HasPrecision(9, 6);
-            builder.Entity<Store>().Property(x => x.Longitud).HasPrecision(9, 6);
+            //builder.Entity<Store>().Property(x => x.Altitud).HasPrecision(9, 6);
+            //builder.Entity<Store>().Property(x => x.Longitud).HasPrecision(9, 6);
 
             base.OnModelCreating(builder);
             builder.HasDefaultSchema("Identity");
@@ -52,8 +53,8 @@ namespace PruebaTecnica_WebMaster.Data
             {
                 entity.ToTable("UserTokens");
             });
-        }
 
-        public DbSet<Store> Stores { get; set; }
+            new StoreMap(builder.Entity<Store>());
+        }
     }
 }

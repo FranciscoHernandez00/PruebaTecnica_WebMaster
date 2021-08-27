@@ -1,0 +1,21 @@
+﻿
+<div>
+    <select class="form-control" id="selectedValue" onchange="GoLocation(this.value)">
+
+        <option>--Select--</option>
+        @foreach (var item in ViewBag.ListOfDropdown)
+        {
+            <option value="@item.Id">@item.Nombre</option>
+        }
+
+    </select>
+    <button>
+        Create Store
+    </button>
+    <button>
+        Show All Stores
+    </button>
+</div>
+<br />
+
+<div id="map"></div>

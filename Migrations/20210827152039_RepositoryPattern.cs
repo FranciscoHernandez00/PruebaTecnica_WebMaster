@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PruebaTecnica_WebMaster.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class RepositoryPattern : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,21 +26,24 @@ namespace PruebaTecnica_WebMaster.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Stores",
+                name: "Store",
                 schema: "Identity",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    Direccion = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    Telefono = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    Longitud = table.Column<decimal>(type: "decimal(9,6)", precision: 9, scale: 6, nullable: false),
-                    Altitud = table.Column<decimal>(type: "decimal(9,6)", precision: 9, scale: 6, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(9,6)", precision: 9, scale: 6, nullable: false),
+                    Latitude = table.Column<decimal>(type: "decimal(9,6)", precision: 9, scale: 6, nullable: false),
+                    AddedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IPAddress = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stores", x => x.Id);
+                    table.PrimaryKey("PK_Store", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -244,7 +247,7 @@ namespace PruebaTecnica_WebMaster.Migrations
                 schema: "Identity");
 
             migrationBuilder.DropTable(
-                name: "Stores",
+                name: "Store",
                 schema: "Identity");
 
             migrationBuilder.DropTable(

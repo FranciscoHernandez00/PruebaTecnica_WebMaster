@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PruebaTecnica_WebMaster.Areas.Identity.Data;
 using PruebaTecnica_WebMaster.Data;
+using PruebaTecnica_WebMaster.Models.ImplementRepositoryPattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace PruebaTecnica_WebMaster
         {
             services.AddDbContext<PruebaTecnica_WebMasterDbContext>(options =>
                    options.UseSqlServer(Configuration.GetConnectionString("PruebaTecnica_WebMasterDbContextConnection")));
-
+            services.AddTransient<IStoreRepository, StoreRepository>();
             services.AddIdentity<PruebaTecnica_WebMasterUser, IdentityRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
