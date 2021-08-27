@@ -55,7 +55,7 @@ namespace PruebaTecnica_WebMaster.Data
             });
 
             new StoreMap(builder.Entity<Store>());
-            builder.Entity<Store>().Property(x => x.Latitude).HasAnnotation(9, 6);
+            builder.Entity<Store>().Property(x => x.Latitude).HasPrecision(9, 6);
             builder.Entity<Store>().Property(x => x.Longitude).HasPrecision(9, 6);
         }
     }
