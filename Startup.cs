@@ -36,7 +36,11 @@ namespace PruebaTecnica_WebMaster
             {
                 options.SignIn.RequireConfirmedAccount = false;
             }).AddEntityFrameworkStores<PruebaTecnica_WebMasterDbContext>().AddDefaultTokenProviders().AddDefaultUI();
-
+            services.ConfigureApplicationCookie(options => {
+                options.Cookie.Name = "AspNetCore.Identity.Aplication";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                options.SlidingExpiration = true;
+            });
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
