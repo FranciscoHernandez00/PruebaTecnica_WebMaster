@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PruebaTecnica_WebMaster.Data;
+using PruebaTecnica_WebMaster.Models;
+using PruebaTecnica_WebMaster.Models.ImplementRepositoryPattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,23 +12,96 @@ namespace PruebaTecnica_WebMaster.Controllers
 {
     public class StoresController : Controller
     {
-        private readonly PruebaTecnica_WebMasterDbContext _context;
 
-        public StoresController(PruebaTecnica_WebMasterDbContext context)
+        private IStoreRepository storeRepository;
+
+        public StoresController(IStoreRepository storeRepository)
         {
-            _context = context;
+            this.storeRepository = storeRepository;
         }
-
         public IActionResult Locate()
         {
+            ViewBag.ListOfDropdown = "Hola";
             return View();
         }
 
-        public JsonResult GetShopList(int ID)
+        [HttpGet]
+        public IActionResult Index()
         {
-            var Hola = "Hola";
+            IEnumerable<StoreViewModel> model = storeRepository.GetAllStores().Select(s => new StoreViewModel
+            {
+                Id = s.Id,
+                Name = s.Name,
+                Address = s.Address,
+                Phone = s.Phone,
+                Coordinates = $"{s.Longitude}, {s.Latitude}",
 
-            return Json(Hola);
+            });
+            return View("Index", model);
         }
+
+        [HttpGet]
+        public IActionResult AddEditStore(long? id)
+        {
+            StoreViewModel model = new StoreViewModel();
+            if (id.HasValue)
+            {
+                Store store = storeRepository.GetStore(id.Value);
+                if (store != null)
+                {
+                    model.Id = store.Id;
+                    model.Name = store.Name;
+                    model.Address = store.Address;
+                    model.Phone = store.Phone;
+                    model.Longitude = store.Longitude;
+                    model.Latitude = store.Latitude;
+                }
+
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddEditStore(long? id, StoreViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    bool isNew = !id.HasValue;
+                    Store store = isNew ? new Store
+                    {
+                        AddedDate = DateTime.UtcNow
+                    } : storeRepository.GetStore(id.Value);
+                    store.Name = model.Name;
+                    store.Address = model.Address;
+                    store.Phone = model.Phone;
+                    store.Longitude = model.Longitude;
+                    store.Latitude = model.Latitude;
+                    store.IPAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+                    store.ModifiedDate = DateTime.UtcNow;
+                    if (isNew)
+                    {
+                        storeRepository.SaveStore(store);
+                    }
+                    else
+                    {
+                        storeRepository.UpdateStore(store);
+                    }
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteStore(long id)
+        {
+            storeRepository.DeleteStore(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

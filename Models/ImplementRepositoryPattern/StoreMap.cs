@@ -12,9 +12,10 @@ namespace PruebaTecnica_WebMaster.Models.ImplementRepositoryPattern
         {
             entityBuilder.HasKey(x => x.Id);
             entityBuilder.Property(x => x.Name).IsRequired();
+            entityBuilder.Property(x => x.Address).IsRequired();
             entityBuilder.Property(x => x.Phone).IsRequired();
-            entityBuilder.Property(x => x.Longitude).HasPrecision(9, 6).IsRequired();
-            entityBuilder.Property(x => x.Latitude).HasPrecision(9, 6).IsRequired();
+            entityBuilder.Property(x => x.Longitude).IsRequired();
+            entityBuilder.Property(x => x.Latitude).IsRequired();
 
         }
     }

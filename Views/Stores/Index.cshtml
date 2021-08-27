@@ -1,0 +1,55 @@
+﻿@model IEnumerable<StoreViewModel>
+@using PruebaTecnica_WebMaster.Models.ImplementRepositoryPattern
+
+<div class="top-buffer"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Stores</div>
+    <div class="panel-body">
+        <div class="btn-group">
+            <a onclick="showInPopUp('@Url.Action("AddEditStore", "Stores", null, Context.Request.Scheme)', 'New Store')" class="btn btn-primary" style="color:#fff">
+                <i class='bx bxs-store-alt'></i>
+                Add Store
+            </a>
+        </div>
+        <div class="top-buffer"></div>
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Adress</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                        <td>
+                            <a onclick="showInPopUp('@Url.Action("AddEditStore", "Stores", new { id = item.Id}, Context.Request.Scheme)', 'Update Store')" class="btn btn-info" style="color:#fff">
+                                <i class='bx bx-pencil'></i>
+                                Edit Store
+                            </a>
+                            <form asp-action="DeleteStore" asp-route-id="@item.Id" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-danger">
+                                    Delete Store
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<br />
+<div id="map"></div>
+
+@section Scripts
+{
+    <script src="~/js/store-index.js" asp-append-version="true"></script>
+}  
