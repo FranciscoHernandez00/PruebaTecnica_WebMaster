@@ -18,7 +18,7 @@ using PruebaTecnica_WebMaster.Areas.Identity.Data;
 
 namespace PruebaTecnica_WebMaster.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    [Authorize(Roles = "Administrador")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<PruebaTecnica_WebMasterUser> _signInManager;
