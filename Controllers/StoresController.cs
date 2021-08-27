@@ -37,7 +37,7 @@ namespace PruebaTecnica_WebMaster.Controllers
                 Coordinates = $"{s.Longitude}, {s.Latitude}",
 
             });
-            ViewBag.AllStores = storeRepository.GetAllStores().ToList();
+            ViewBag.AllStores = storeRepository.GetAllStores().Select(x => x.Longitude).ToList();
             return View("Index", model);
         }
 

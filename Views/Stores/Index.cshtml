@@ -1,14 +1,6 @@
 ﻿@model IEnumerable<StoreViewModel>
 @using PruebaTecnica_WebMaster.Models.ImplementRepositoryPattern
 
-<ul>
-    @foreach(var store in ViewBag.AllStores)
-    {
-        <li> @store.Longitude </li>
-        <li> @store.Latitude </li>
-    }
-</ul>
-
 <div class="panel panel-primary">
     <div class="panel-heading panel-head">
         <h1> Stores </h1>
@@ -58,8 +50,3 @@
     </div>
 </div>
 <br>
-<div id="map"></div>
-@section Scripts
-{
-    <script src="~/js/store-index.js" asp-append-version="true"></script>
-}  
