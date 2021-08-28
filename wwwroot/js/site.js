@@ -8,7 +8,7 @@ function Info() {
 }
 
 $("#myFunction").on("click", function (event) {
-    var r = confirm("Delete this store?");
+    var r = confirm("Do you want to delete this Store?");
     if (r == true) {
         
     } else {
