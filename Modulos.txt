@@ -1,8 +1,20 @@
-﻿Pautas - lineamientos a seguir
+﻿Pautas - lineamientos a seguir:
 • El módulo de autenticación debe utilizar Identity.
+	La autenticación solicitada fue añadida con exito, al mismo tiempo se optó por crear el módulo entero ya que Identity
+	permite un gran control de los usuraios, roles, contraseñas y por su diseño.
+
 • La estructura del proyecto debe seguir el patrón repositorio (deseable).
+	La aplicación del patrób de repositorio fue aplicada en la entidad Store.
+
 • Para Crear Store debe utilizar Google Maps Api u otra Api de mapas (Opcional).
+	La API de mapas fue implementada con exito.
+
 • Es requerido el uso de bootstrap y css para el diseño de la aplicación.
+	Todas y cada una de las vistas utilizan el framework de diseño Boostrap y CSS personalizado
+
 • Se debe llevar control de versiones con git y repositorio público en github.
+	Adjunto el enlace de repositorio: https://github.com/FranciscoHernandez00/PruebaTecnica_WebMaster
+
 • Utilizar buenas practicas de programacion.
+
 • Base de datos con sql server.
