@@ -111,8 +111,8 @@
                             </a>
                             @if (User.IsInRole("Administrador"))
                             {
-                                <form asp-action="DeleteStore" asp-route-id="@item.Id" method="post" class="d-inline">
-                                    <button type="submit" class="btn btn-danger">
+                                <form asp-action="DeleteStore" asp-route-id="@item.Id" method="post" class="d-inline" id="myFunction" >
+                                    <button type="submit"  class="btn btn-danger">
                                         Delete Store
                                     </button>
                                 </form>

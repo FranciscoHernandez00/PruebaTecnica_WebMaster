@@ -6,3 +6,15 @@
 function Info() {
     alert("User accounts are assigned by administrators.");
 }
+
+$("#myFunction").on("click", function (event) {
+    var r = confirm("Delete this store?");
+    if (r == true) {
+        
+    } else {
+        event.preventDefault();
+    }
+    
+    
+   
+});
