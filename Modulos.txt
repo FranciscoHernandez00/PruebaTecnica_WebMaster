@@ -1,0 +1,8 @@
+﻿Pautas - lineamientos a seguir
+• El módulo de autenticación debe utilizar Identity.
+• La estructura del proyecto debe seguir el patrón repositorio (deseable).
+• Para Crear Store debe utilizar Google Maps Api u otra Api de mapas (Opcional).
+• Es requerido el uso de bootstrap y css para el diseño de la aplicación.
+• Se debe llevar control de versiones con git y repositorio público en github.
+• Utilizar buenas practicas de programacion.
+• Base de datos con sql server.
