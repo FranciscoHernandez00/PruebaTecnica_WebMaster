@@ -11,6 +11,13 @@ namespace PruebaTecnica_WebMaster.Areas.Identity.Data
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public bool Create { get; set; }
+
+        public bool Edit { get; set; }
+
+        public bool Delete { get; set; }
+
         public int UsernameChangeLimit { get; set; } = 10;
         public byte[] ProfilePicture { get; set; }
     }
