@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h1>User Roles</h1>
-<a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Create New User</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -27,13 +26,6 @@
                 <td>@string.Join(" , ", user.Roles.ToList())</td>
                 <td>
                     <a class="btn btn-primary" asp-controller="UserRoles" asp-action="Manage" asp-route-userId="@user.UserId">Manage Roles</a>
-                </td>
-                <td>
-                    <form asp-action="Delete" asp-route-userId="@user.UserId" method="post">
-                        <button type="submit" class="btn btn-danger">
-                            Delete User
-                        </button>
-                    </form>
                 </td>
             </tr>
         }

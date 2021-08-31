@@ -73,18 +73,25 @@
 <br />
 <div class="panel panel-primary">
     <div class="panel-heading panel-head ">
+
         <div class="">
-           <span style="font-size:40px;">Stores</span>
-            <a asp-action="CreateStore" class="btn btn-primary">
-                <i class='bx bxs-store-alt'></i>
-                Add Stores
-            </a>
+            <span style="font-size:40px;">Stores</span>
+            @if (ViewBag.Create == false)
+            {
+            }
+            else
+            {
+                <a asp-action="CreateStore" class="btn btn-primary">
+                    <i class='bx bxs-store-alt'></i>
+                    Add Stores
+                </a>
+            }
         </div>
-       
+
     </div>
     <hr />
     <div class="panel-body">
-        
+
         <div class="top-buffer"></div>
         <table class="table table-bordered table-striped table-condensed">
             <thead>
@@ -105,20 +112,35 @@
                         <td>@Html.DisplayFor(modelItem => item.Phone)</td>
                         <td>@Html.DisplayFor(modelItem => item.Coordinates)</td>
                         <td>
-                            <a asp-action="EditStore" asp-route-id="@item.Id" class="btn btn-info">
-                                <i class='bx bx-pencil'></i>
-                                Edit Store
-                            </a>
-                            @if (User.IsInRole("Administrador"))
+                            @if (ViewBag.Edit == false)
                             {
-                                <form asp-action="DeleteStore" asp-route-id="@item.Id" method="post" class="d-inline" id="myFunction" >
-                                    <button type="submit"  class="btn btn-danger">
+
+                            }
+                            else
+                            {
+                                <a asp-action="EditStore" asp-route-id="@item.Id" class="btn btn-info">
+                                    <i class='bx bx-pencil'></i>
+                                    Edit Store
+                                </a>
+                            }
+
+                            @if (ViewBag.Delete == false)
+                            {
+
+                            }
+                            else
+                            {
+                                <form asp-action="DeleteStore" asp-route-id="@item.Id" method="post" class="d-inline" id="myFunction">
+                                    <button type="submit" class="btn btn-danger">
                                         Delete Store
                                     </button>
                                 </form>
-
                             }
 
+                            <a asp-action="StoreDetails" asp-route-id="@item.Id" class="btn btn-warning" style="color:#fff">
+                                <i class='bx bx-detail'></i>
+                                Store Details
+                            </a>
                         </td>
                     </tr>
 

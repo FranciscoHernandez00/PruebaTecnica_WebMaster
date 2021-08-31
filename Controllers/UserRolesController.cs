@@ -22,6 +22,7 @@ namespace PruebaTecnica_WebMaster.Controllers
             _roleManager = roleManager;
             _userManager = userManager;
         }
+
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -50,6 +51,7 @@ namespace PruebaTecnica_WebMaster.Controllers
                 return View("NotFound");
             }
             ViewBag.UserName = user.UserName;
+            ViewBag.Email = user.Email;
             var model = new List<ManageUserRolesViewModel>();
             foreach (var role in _roleManager.Roles)
             {
@@ -92,29 +94,6 @@ namespace PruebaTecnica_WebMaster.Controllers
                 return View(model);
             }
             return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Delete(string UserId)
-        {
-            PruebaTecnica_WebMasterUser user = await _userManager.FindByIdAsync(UserId);
-            if(user != null)
-            {
-                IdentityResult result = await _userManager.DeleteAsync(user);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return View();
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("", "User Not Found");
-            }
-            return View();
         }
 
         private async Task<List<string>> GetUserRoles(PruebaTecnica_WebMasterUser user)

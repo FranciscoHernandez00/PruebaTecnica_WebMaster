@@ -35,6 +35,7 @@ namespace PruebaTecnica_WebMaster
             services.AddIdentity<PruebaTecnica_WebMasterUser, IdentityRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
+                options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<PruebaTecnica_WebMasterDbContext>().AddDefaultTokenProviders().AddDefaultUI();
             services.ConfigureApplicationCookie(options => {
                 options.Cookie.Name = "AspNetCore.Identity.Aplication";

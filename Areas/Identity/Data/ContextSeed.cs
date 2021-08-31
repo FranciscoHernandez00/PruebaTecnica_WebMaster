@@ -25,7 +25,10 @@ namespace PruebaTecnica_WebMaster.Areas.Identity.Data
                 FirstName = "FrancoGhost",
                 LastName = "FrancoGhost",
                 EmailConfirmed = true,
-                PhoneNumberConfirmed = true
+                PhoneNumberConfirmed = true,
+                Create = true,
+                Delete = true,
+                Edit = true
             };
             if (userManager.Users.All(u => u.Id != defaultUser.Id))
             {

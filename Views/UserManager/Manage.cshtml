@@ -1,0 +1,34 @@
+﻿@model UserViewModel
+@using PruebaTecnica_WebMaster.Models.UserManage
+@{
+    ViewData["Title"] = "Manage User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+    <div class="card">
+        <div class="card-header">
+            <h2>Manage User Permissions</h2>
+            Add/Remove Permissions for User / @ViewBag.UserName - @ViewBag.Email.
+        </div>
+        <div class="card-body">
+            <div class="form-check">
+                <input class="form-check-input" asp-for="Create">
+                <label class="form-check-label" asp-for="Create"></label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" asp-for="Edit">
+                <label class="form-check-label" asp-for="Edit"></label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" asp-for="Delete">
+                <label class="form-check-label" asp-for="Delete"></label>
+            </div>
+        </div>
+        <div class="card-footer">
+            <input type="submit" value="Update" class="btn btn-primary"
+                   style="width:auto" />
+            <a asp-action="Index" class="btn btn-primary" style="width:auto">Cancel</a>
+        </div>
+    </div>
+</form>

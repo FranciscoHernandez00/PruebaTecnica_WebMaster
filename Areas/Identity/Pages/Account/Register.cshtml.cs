@@ -60,6 +60,15 @@ namespace PruebaTecnica_WebMaster.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
+            [Display(Name = "Create")]
+            public bool Create { get; set; }
+
+            [Display(Name = "Edit")]
+            public bool Edit { get; set; }
+
+            [Display(Name = "Delete")]
+            public bool Delete { get; set; }
+
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -86,7 +95,7 @@ namespace PruebaTecnica_WebMaster.Areas.Identity.Pages.Account
             {
                 MailAddress address = new MailAddress(Input.Email);
                 string userName = address.User; 
-                var user = new PruebaTecnica_WebMasterUser { UserName = userName, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName};
+                var user = new PruebaTecnica_WebMasterUser { UserName = userName, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, Create = Input.Create, Edit = Input.Edit, Delete = Input.Delete};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

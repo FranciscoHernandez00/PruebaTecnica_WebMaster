@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
+using PruebaTecnica_WebMaster.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace PruebaTecnica_WebMaster.Controllers
 {
@@ -17,20 +20,26 @@ namespace PruebaTecnica_WebMaster.Controllers
 
 
         private IStoreRepository storeRepository;
+        private readonly UserManager<PruebaTecnica_WebMasterUser> _userManager;
 
-        public StoresController(IStoreRepository storeRepository)
+        public StoresController(IStoreRepository storeRepository, UserManager<PruebaTecnica_WebMasterUser> userManager)
         {
+            _userManager = userManager;
             this.storeRepository = storeRepository;
-        }
-        public IActionResult Locate()
-        {
-            ViewBag.ListOfDropdown = "Hola";
-            return View();
         }
 
         [HttpGet]
         public IActionResult Index()
         {
+            var user = User.FindFirstValue(ClaimTypes.Name);
+            var create = _userManager.Users.Where(x => x.UserName == user).Select(x => x.Create).FirstOrDefault();
+            var edit = _userManager.Users.Where(x => x.UserName == user).Select(x => x.Edit).FirstOrDefault();
+            var delete = _userManager.Users.Where(x => x.UserName == user).Select(x => x.Delete).FirstOrDefault();
+            
+            ViewBag.Create = create;
+            ViewBag.Edit = edit;
+            ViewBag.Delete = delete;
+
             IEnumerable<StoreViewModel> model = storeRepository.GetAllStores().Select(s => new StoreViewModel
             {
                 Id = s.Id,
@@ -130,6 +139,32 @@ namespace PruebaTecnica_WebMaster.Controllers
         {
             storeRepository.DeleteStore(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult StoreDetails(long? id)
+        {
+            var stores = storeRepository.GetStore(id.Value);
+            var lat = stores.Latitude;
+            var lon = stores.Longitude;
+            ViewBag.Latitude = lat;
+            ViewBag.Longitude = lon;
+            StoreViewModel model = new StoreViewModel();
+            if (id.HasValue)
+            {
+                Store store = storeRepository.GetStore(id.Value);
+                if (store != null)
+                {
+                    model.Id = store.Id;
+                    model.Name = store.Name;
+                    model.Address = store.Address;
+                    model.Phone = store.Phone;
+                    model.Longitude = store.Longitude;
+                    model.Latitude = store.Latitude;
+                }
+
+            }
+            return View(model);
         }
 
     }

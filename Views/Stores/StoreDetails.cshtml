@@ -1,0 +1,54 @@
+﻿@model StoreViewModel
+@using PruebaTecnica_WebMaster.Models.ImplementRepositoryPattern
+
+@{
+    ViewData["Title"] = "Store Details";
+}
+
+<div class="container p-3 my-3 border">
+    <h1>Store Details</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+        <dd class="col-sm-9">
+            @ViewBag.Longitude
+            <input type="number" value="@ViewBag.Longitude"  id="longitude" readonly hidden />
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+        <dd class="col-sm-9">
+            @ViewBag.Latitude
+            <input type="number" value="@ViewBag.Latitude" id="latitude" readonly hidden />
+        </dd>
+    </dl>
+    <div id="map" style="height:400px; width:100%;"></div>
+    <br />
+    <div>
+        <a asp-action="EditStore" asp-route-id="@Model.Id" class="btn btn-info" >
+            <i class='bx bx-pencil'></i>
+            Edit Store
+        </a>
+        <a class="btn btn-danger" asp-action="Index">Back</a>
+    </div>
+</div>
