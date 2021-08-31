@@ -102,18 +102,23 @@
 
                     </td>
                     <td>
-                        <a class="btn btn-primary" asp-controller="UserManager" asp-action="Manage" asp-route-userId="@user.UserId">Manage Permissions</a>
+                        <a class="btn btn-primary btn-sm" asp-controller="UserManager" asp-action="Manage" asp-route-userId="@user.UserId">Manage Permissions</a>
                     </td>
                     @if (ViewBag.Id == user.UserId)
                     {
+                        <td>
+                            <button type="button" class="btn btn-sm btn-success">
+                                Logged
+                            </button>
+                        </td>
 
                     }
                     else
                     {
                         <td>
                             <form asp-action="Delete" asp-route-userId="@user.UserId" method="post">
-                                <button type="submit" class="btn btn-danger">
-                                    Delete User
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    Delete
                                 </button>
                             </form>
                         </td>
@@ -124,4 +129,4 @@
             }
         </tbody>
     </table>
-    </div>
+</div>
