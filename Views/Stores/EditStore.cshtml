@@ -5,48 +5,49 @@
     ViewData["Title"] = "Update Store";
 }
 
+<div class="container p-3 my-3 border">
+    <h1> Edit Store </h1>
 
-<h1> Edit Store </h1>
-
-<form asp-action="EditStore" autocomplete="off">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" required />
+    <form asp-action="EditStore" autocomplete="off">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label"></label>
+                    <input asp-for="Phone" class="form-control" required />
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" required />
+
+        <div class="form-group">
+            <label asp-for="Address" class="control-label"></label>
+            <input asp-for="Address" class="form-control" required />
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Longitude" class="control-label"></label>
+                    <input asp-for="Longitude" class="form-control" type="number" id="longitude" required readonly />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Latitude" class="control-label"></label>
+                    <input asp-for="Latitude" class="form-control" type="number" id="latitude" required readonly />
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Address" class="control-label"></label>
-        <input asp-for="Address" class="form-control" required />
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Longitude" class="control-label"></label>
-                <input asp-for="Longitude" class="form-control" type="number" id="longitude" required readonly />
-            </div>
+        <div id="map" style="height:400px; width:100%;"></div>
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary btn-block" />
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Latitude" class="control-label"></label>
-                <input asp-for="Latitude" class="form-control" type="number" id="latitude" required readonly />
-            </div>
-        </div>
-    </div>
-    <div id="map" style="height:400px; width:100%;"></div>
-    <br />
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary btn-block" />
-    </div>
-</form>
+    </form>
 
+    </div>

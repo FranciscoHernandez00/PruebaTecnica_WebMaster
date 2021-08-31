@@ -146,6 +146,11 @@ namespace PruebaTecnica_WebMaster.Controllers
         [HttpGet]
         public IActionResult StoreDetails(long? id)
         {
+            var user = User.FindFirstValue(ClaimTypes.Name);
+            var edit = _userManager.Users.Where(x => x.UserName == user).Select(x => x.Edit).FirstOrDefault();
+
+            ViewBag.Edit = edit;
+
             var stores = storeRepository.GetStore(id.Value);
             var lat = stores.Latitude;
             var lon = stores.Longitude;

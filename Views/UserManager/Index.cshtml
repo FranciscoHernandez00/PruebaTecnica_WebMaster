@@ -6,7 +6,7 @@
 }
 
 <style>
-    .Permitted{
+    .Permitted {
         color: green;
     }
 
@@ -14,103 +14,114 @@
     .Denied {
         color: red;
     }
-
 </style>
+<div class="container p-3 my-3 border">
+    <h1>
+        User List
+    </h1>
+    <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Create New User</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th> Create</th>
+                <th> Edit</th>
+                <th> Delete </th>
+                <th>Details </th>
+                <th colspan="2">Action</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Email</td>
 
-<h1>
-    User List
-</h1>
-<a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Create New User</a>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th> Create</th>
-            <th> Edit</th>
-            <th> Delete </th>
-            <th colspan="2">Action</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
-        <tr>
-            <td>@user.FirstName</td>
-            <td>@user.LastName</td>
-            <td>@user.Email</td>
-            <td>
-                @if (user.Create == true)
-                {
-                    <div class="Permitted">
-                        Permitted
-                    </div>
-                }
-                else
-                {
-                    <div class="Denied">
-                        Denied
-                    </div>
-                }
-            </td>
-            <td>
-                @if (user.Edit == true)
-                {
-                    <div class="Permitted">
-                        Permitted
-                    </div>
-                }
-                else
-                {
-                    <div class="Denied">
-                        Denied
-                    </div>
-                }
+                    <td>
+                        @if (user.Create == true)
+                        {
+                            <div class="Permitted">
+                                Permitted
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="Denied">
+                                Denied
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        @if (user.Edit == true)
+                        {
+                            <div class="Permitted">
+                                Permitted
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="Denied">
+                                Denied
+                            </div>
+                        }
 
-            </td>
-            <td>
-                @if (user.Delete == true)
-                {
-                    <div class="Permitted">
-                        Permitted
-                    </div>
-                }
-                else
-                {
-                    <div class="Denied">
-                        Denied
-                    </div>
-                }
+                    </td>
+                    <td>
+                        @if (user.Delete == true)
+                        {
+                            <div class="Permitted">
+                                Permitted
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="Denied">
+                                Denied
+                            </div>
+                        }
 
-            </td>
-            <td>
-                @if (user.Details == true)
-                {
-                    <div class="Permitted">
-                        Permitted
-                    </div>
-                }
-                else
-                {
-                    <div class="Denied">
-                        Denied
-                    </div>
-                }
+                    </td>
+                    <td>
+                        @if (user.Details == true)
+                        {
+                            <div class="Permitted">
+                                Permitted
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="Denied">
+                                Denied
+                            </div>
+                        }
 
-            </td>
-            <td>
-                <a class="btn btn-primary" asp-controller="UserManager" asp-action="Manage" asp-route-userId="@user.UserId">Manage Permissions</a>
-            </td>
-            <td>
-                <form asp-action="Delete" asp-route-userId="@user.UserId" method="post">
-                    <button type="submit" class="btn btn-danger">
-                        Delete User
-                    </button>
-                </form>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="UserManager" asp-action="Manage" asp-route-userId="@user.UserId">Manage Permissions</a>
+                    </td>
+                    @if (ViewBag.Id == user.UserId)
+                    {
+
+                    }
+                    else
+                    {
+                        <td>
+                            <form asp-action="Delete" asp-route-userId="@user.UserId" method="post">
+                                <button type="submit" class="btn btn-danger">
+                                    Delete User
+                                </button>
+                            </form>
+                        </td>
+                    }
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

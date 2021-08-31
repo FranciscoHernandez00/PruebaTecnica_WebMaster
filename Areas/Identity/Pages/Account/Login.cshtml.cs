@@ -108,7 +108,7 @@ namespace PruebaTecnica_WebMaster.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    return RedirectToAction("Index", "Stores");
                 }
                 if (result.RequiresTwoFactor)
                 {

@@ -32,7 +32,7 @@
         </dt>
         <dd class="col-sm-9">
             @ViewBag.Longitude
-            <input type="number" value="@ViewBag.Longitude"  id="longitude" readonly hidden />
+            <input type="number" value="@ViewBag.Longitude" id="longitude" readonly hidden />
         </dd>
         <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.Latitude)
@@ -45,10 +45,18 @@
     <div id="map" style="height:400px; width:100%;"></div>
     <br />
     <div>
-        <a asp-action="EditStore" asp-route-id="@Model.Id" class="btn btn-info" >
-            <i class='bx bx-pencil'></i>
-            Edit Store
-        </a>
+        @if (ViewBag.Edit == false)
+        {
+
+        }
+        else
+        {
+            <a asp-action="EditStore" asp-route-id="@Model.Id" class="btn btn-info">
+                <i class='bx bx-pencil'></i>
+                Edit Store
+            </a>
+        }
+
         <a class="btn btn-danger" asp-action="Index">Back</a>
     </div>
 </div>

@@ -8,6 +8,7 @@ using PruebaTecnica_WebMaster.Models.UserManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace PruebaTecnica_WebMaster.Controllers
@@ -23,6 +24,11 @@ namespace PruebaTecnica_WebMaster.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var userName = User.FindFirstValue(ClaimTypes.Name);
+            var id = _userManager.Users.Where(x => x.UserName == userName).Select(x => x.Id).FirstOrDefault();
+            ViewBag.Id = id;
+
+
             var users = await _userManager.Users.ToListAsync();
             var userViewModel = new List<UserViewModel>();
             foreach (PruebaTecnica_WebMasterUser user in users)

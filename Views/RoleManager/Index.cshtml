@@ -3,19 +3,21 @@
     ViewData["Title"] = "Role Manager";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Role Manager</h1>
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>Role</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var role in Model)
-        {
+<div class="container p-3 my-3 border">
+    <h1>Role Manager</h1>
+    <table class="table table-striped table-hover">
+        <thead>
             <tr>
-                <td>@role.Name</td>
+                <th>Role</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var role in Model)
+            {
+                <tr>
+                    <td>@role.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
