@@ -35,10 +35,12 @@ namespace PruebaTecnica_WebMaster.Controllers
             var create = _userManager.Users.Where(x => x.UserName == user).Select(x => x.Create).FirstOrDefault();
             var edit = _userManager.Users.Where(x => x.UserName == user).Select(x => x.Edit).FirstOrDefault();
             var delete = _userManager.Users.Where(x => x.UserName == user).Select(x => x.Delete).FirstOrDefault();
+            var details= _userManager.Users.Where(x => x.UserName == user).Select(x => x.Details).FirstOrDefault();
             
             ViewBag.Create = create;
             ViewBag.Edit = edit;
             ViewBag.Delete = delete;
+            ViewBag.Details = details;
 
             IEnumerable<StoreViewModel> model = storeRepository.GetAllStores().Select(s => new StoreViewModel
             {

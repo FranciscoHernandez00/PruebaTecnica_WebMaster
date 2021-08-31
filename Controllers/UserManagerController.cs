@@ -35,6 +35,7 @@ namespace PruebaTecnica_WebMaster.Controllers
                 thisViewModel.Create = user.Create;
                 thisViewModel.Edit = user.Edit;
                 thisViewModel.Delete = user.Delete;
+                thisViewModel.Details = user.Details;
                 userViewModel.Add(thisViewModel);
             }
             return View(userViewModel);
@@ -52,6 +53,7 @@ namespace PruebaTecnica_WebMaster.Controllers
                 model.Create = user.Create;
                 model.Edit = user.Edit;
                 model.Delete = user.Delete;
+                model.Details = user.Details;
                 return View(model);
             }
             else
@@ -70,6 +72,7 @@ namespace PruebaTecnica_WebMaster.Controllers
                 user.Create = model.Create;
                 user.Edit = model.Edit;
                 user.Delete = model.Delete;
+                user.Details = model.Details;
                 await _userManager.UpdateAsync(user);
                 return RedirectToAction("Index");
             }

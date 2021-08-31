@@ -18,6 +18,8 @@ namespace PruebaTecnica_WebMaster.Areas.Identity.Data
 
         public bool Delete { get; set; }
 
+        public bool Details { get; set; }
+
         public int UsernameChangeLimit { get; set; } = 10;
         public byte[] ProfilePicture { get; set; }
     }

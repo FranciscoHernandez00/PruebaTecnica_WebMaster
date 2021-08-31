@@ -86,6 +86,21 @@
 
             </td>
             <td>
+                @if (user.Details == true)
+                {
+                    <div class="Permitted">
+                        Permitted
+                    </div>
+                }
+                else
+                {
+                    <div class="Denied">
+                        Denied
+                    </div>
+                }
+
+            </td>
+            <td>
                 <a class="btn btn-primary" asp-controller="UserManager" asp-action="Manage" asp-route-userId="@user.UserId">Manage Permissions</a>
             </td>
             <td>

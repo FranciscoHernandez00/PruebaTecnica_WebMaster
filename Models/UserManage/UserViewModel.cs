@@ -23,5 +23,7 @@ namespace PruebaTecnica_WebMaster.Models.UserManage
 
         public bool Delete { get; set; }
 
+        public bool Details { get; set; }
+
     }
 }

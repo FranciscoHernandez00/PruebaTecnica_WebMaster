@@ -137,10 +137,20 @@
                                 </form>
                             }
 
-                            <a asp-action="StoreDetails" asp-route-id="@item.Id" class="btn btn-warning" style="color:#fff">
-                                <i class='bx bx-detail'></i>
-                                Store Details
-                            </a>
+                            @if (ViewBag.Details == false)
+                            {
+
+                            }
+                            else
+                            {
+                                <a asp-action="StoreDetails" asp-route-id="@item.Id" class="btn btn-warning" style="color:#fff">
+                                    <i class='bx bx-detail'></i>
+                                    Store Details
+                                </a>
+
+                            }
+
+
                         </td>
                     </tr>
 
