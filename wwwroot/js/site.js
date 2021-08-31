@@ -18,3 +18,7 @@ $("#myFunction").on("click", function (event) {
     
    
 });
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
